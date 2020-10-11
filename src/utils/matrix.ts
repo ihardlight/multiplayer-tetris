@@ -20,5 +20,5 @@ const flipMatrix = <T>(matrix: T[][]): T[][] =>
   map(index => pluck<T>(index, matrix), rangeFrom(matrix));
 
 export const rotateMatrix = compose(flipMatrix, reverse);
-export const flipMatrixCounterClockwise = compose(reverse, rotateMatrix);
-export const rotateMatrixCounterClockwise = compose(reverse, flipMatrix);
+export const flipMatrixCounterClockwise = compose(rotateMatrix, reverse);
+export const rotateMatrixCounterClockwise = compose(flipMatrix, reverse);
