@@ -1,4 +1,4 @@
-import { Cell } from '@/types/cell';
+import { Cell, Color } from '@/types';
 
 export enum Type {
   J,
@@ -12,5 +12,6 @@ export enum Type {
 
 export type Figure = {
   type: Type;
+  color: Color;
   cells: Cell[];
 };

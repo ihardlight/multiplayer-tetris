@@ -9,5 +9,5 @@ export const initFigure = (type: Type): Figure => {
     color,
   }));
 
-  return { type, cells };
+  return { type, color, cells };
 };

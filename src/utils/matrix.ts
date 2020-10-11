@@ -1,24 +1,26 @@
-type Callable<T> = (item: T) => T;
-type Mappable<T, K> = (item: T) => K;
+export type Callable<T> = (item: T) => T;
+export type Mappable<T, K> = (item: T) => K;
 
-const compose = <T>(a: Callable<T>, b: Callable<T>) => (item: T): T =>
+export const compose = <T>(a: Callable<T>, b: Callable<T>) => (item: T): T =>
   a(b(item));
 
-const reverse = <T>(array: T[]): T[] => [...array].reverse();
+export const reverse = <T>(array: T[]): T[] => [...array].reverse();
 
-const get = <T>(id: number) => (array: T[]): T => array[id];
+export const transpose = <T>(array: T[][]): T[][] =>
+  array[0].map((_, colIndex) => array.map(row => row[colIndex]));
 
-const map = <T, K>(fn: Mappable<T, K>, array: T[]): K[] =>
+export const get = <T>(id: number) => (array: T[]): T => array[id];
+
+export const map = <T, K>(fn: Mappable<T, K>, array: T[]): K[] =>
   array.map(item => fn(item));
 
-const pluck = <T>(index: number, data: T[][]): T[] =>
+export const pluck = <T>(index: number, data: T[][]): T[] =>
   map<T[], T>(get<T>(index), data);
 
-const rangeFrom = <T>(array: T[]): number[] => array.map((_, ind) => ind);
+export const rangeFrom = <T>(array: T[]): number[] =>
+  array.map((_, ind) => ind);
 
-const flipMatrix = <T>(matrix: T[][]): T[][] =>
-  map(index => pluck<T>(index, matrix), rangeFrom(matrix));
+export const flipMatrix = <T>(matrix: T[][]): T[][] =>
+  map(index => pluck<T>(index, matrix), rangeFrom(transpose(matrix)));
 
 export const rotateMatrix = compose(flipMatrix, reverse);
-export const flipMatrixCounterClockwise = compose(rotateMatrix, reverse);
-export const rotateMatrixCounterClockwise = compose(flipMatrix, reverse);

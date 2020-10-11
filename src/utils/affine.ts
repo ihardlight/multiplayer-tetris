@@ -1,4 +1,5 @@
 import { Coordinate, Figure, Orientation } from '@/types';
+import { rotateMatrix } from '@/utils/matrix';
 
 const shiftCoordinate = (
   coordinate: Coordinate,
@@ -30,12 +31,13 @@ export const shiftFigure = (
 };
 
 export const rotateFigure = (figure: Figure): Figure => {
-  // const dimension = figure.cells.reduce(
-  //   (max, { coordinate }) => Math.max(max, ...coordinate),
-  //   0,
-  // );
+  const coordinateMatrix = figure.cells.map(({ coordinate }) => coordinate);
+  const rotatedCoordinates = rotateMatrix(coordinateMatrix) as Coordinate[];
 
-  const rotatedCells = figure.cells;
+  const rotatedCells = rotatedCoordinates.map(coordinate => ({
+    coordinate,
+    color: figure.color,
+  }));
 
   return {
     ...figure,
