@@ -1,4 +1,4 @@
-import { Cell, Color } from '@/types';
+import { Cell, Color } from '../types';
 
 export enum Type {
   J,

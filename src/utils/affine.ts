@@ -1,5 +1,5 @@
-import { Coordinate, Figure, Orientation } from '@/types';
-import { rotateMatrix } from '@/utils/matrix';
+import { Coordinate, Figure, Orientation } from '../types';
+import { rotateMatrix } from './matrix';
 
 const shiftCoordinate = (
   coordinate: Coordinate,

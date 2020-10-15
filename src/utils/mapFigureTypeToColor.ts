@@ -1,4 +1,4 @@
-import { Color, Type } from '@/types';
+import { Color, Type } from '../types';
 
 export const mapFigureTypeToColor = (type: Type): Color => {
   switch (type) {

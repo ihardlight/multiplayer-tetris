@@ -1,5 +1,4 @@
-import { Cell } from '@/types/cell';
-import { Figure } from '@/types/figure';
+import { Cell, Figure } from '../types';
 
 export type Board = {
   height: number;

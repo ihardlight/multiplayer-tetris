@@ -1,4 +1,4 @@
-import { Coordinate, Type } from '@/types';
+import { Coordinate, Type } from '../types';
 
 export const mapFigureTypeToCoordinates = (type: Type): Coordinate[] => {
   switch (type) {

@@ -1,4 +1,4 @@
-import { Color } from '@/types/color';
+import { Color } from './color';
 
 export type Coordinate = [number, number];
 

@@ -1,6 +1,5 @@
-import { Cell, Figure, Type } from '@/types';
-import { mapFigureTypeToColor } from '@/utils/mapFigureTypeToColor';
-import { mapFigureTypeToCoordinates } from '@/utils/mapFigureTypeToCoordinates';
+import { Cell, Figure, Type } from '../types';
+import { mapFigureTypeToColor, mapFigureTypeToCoordinates } from '../utils';
 
 export const initFigure = (type: Type): Figure => {
   const color = mapFigureTypeToColor(type);
