@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { BoardContext, BoardContextValue } from '../../hooks';
 import { Cell, Direction, Figure, Orientation, Type } from '../../types';
