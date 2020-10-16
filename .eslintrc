@@ -10,6 +10,7 @@
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "prettier",
     "prettier/@typescript-eslint"
@@ -25,6 +26,7 @@
     "space-in-parens": "error",
     "no-multiple-empty-lines": "error",
     "prefer-const": "error",
-    "no-use-before-define": "error"
+    "no-use-before-define": "error",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }

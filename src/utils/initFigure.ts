@@ -10,3 +10,9 @@ export const initFigure = (type: Type): Figure => {
 
   return { type, color, cells };
 };
+
+export const getRandomFigure = (): Figure => {
+  const randomInd = Math.floor(Math.random() * Object.values(Type).length);
+  const type = Object.values(Type)[randomInd] as Type;
+  return initFigure(type);
+};

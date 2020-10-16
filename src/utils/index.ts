@@ -1,6 +1,8 @@
 export * from './affine';
+export * from './canMoveDown';
 export * from './matrix';
-export { initFigure } from './initFigure';
-export { mapFigureToColor } from './mapFigureToColor';
-export { mapFigureTypeToColor } from './mapFigureTypeToColor';
-export { mapFigureTypeToCoordinates } from './mapFigureTypeToCoordinates';
+export * from './initFigure';
+export * from './mapCellArrayToRecord';
+export * from './mapFigureToColor';
+export * from './mapFigureTypeToColor';
+export * from './mapFigureTypeToCoordinates';
