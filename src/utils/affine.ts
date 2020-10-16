@@ -1,7 +1,7 @@
 import { Coordinate, Figure, Orientation } from '../types';
 import { rotateMatrix } from './matrix';
 
-const shiftCoordinate = (
+export const shiftCoordinate = (
   coordinate: Coordinate,
   shift = 0,
   orientation = Orientation.HORIZONTAL,

@@ -1,10 +1,11 @@
-import { Cell, CellRecord } from '../types';
+import { Cell, CellRecord, Coordinate } from '../types';
 
-export const getCellHash = ({ coordinate }: Cell): string =>
+export const getCellHash = (coordinate: Coordinate): string =>
   `${coordinate[0]}-${coordinate[1]}`;
 
 export const mapCellArrayToRecord = (cells: Cell[]): CellRecord =>
   cells.reduce(
-    (accum, cell) => Object.assign(accum, { [getCellHash(cell)]: cell.color }),
+    (accum, { coordinate, color }) =>
+      Object.assign(accum, { [getCellHash(coordinate)]: color }),
     {},
   );

@@ -8,26 +8,39 @@ import {
   shiftFigure,
   canMoveDownFigure,
   getRandomFigure,
+  canCleanRowList,
 } from '../../utils';
 
-const DIMENSIONS = [8, 12];
+const MULTIPLAYER = 10;
 const START_SPEED = 1;
 const SECOND = 1000;
+const DIMENSIONS: [number, number] = [8, 12];
+const OFFSET: [number, number] = [Math.floor(DIMENSIONS[0] / 2), DIMENSIONS[1]];
 
 const Board: FC = () => {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const makeGameOver = useCallback(() => setGameOver(true), []);
 
   const [score, setScore] = useState<number>(0);
+  const increaseScore = useCallback(
+    (value = 1) => setScore(score => score + value),
+    [],
+  );
+
   const [speed, setSpeed] = useState<number>(START_SPEED);
+  const increaseSpeed = useCallback(
+    () => setSpeed(speed => speed + 1 / speed),
+    [],
+  );
+
   const [cells, setCells] = useState<Cell[]>([]);
 
   const [currentFigure, setCurrentFigure] = useState<Figure>(() =>
-    initFigure(Type.L),
+    initFigure(Type.L, OFFSET),
   );
 
   const [nextFigure, setNextFigure] = useState<Figure>(() =>
-    initFigure(Type.O),
+    initFigure(Type.O, OFFSET),
   );
 
   const rotateFigure = useCallback(() => {}, []);
@@ -51,9 +64,30 @@ const Board: FC = () => {
     if (!canMoveDownFigure(cellMap, movedFigure)) {
       setCells(cells => [...cells, ...currentFigure.cells]);
       setCurrentFigure(nextFigure);
-      setNextFigure(getRandomFigure);
+      setNextFigure(() => getRandomFigure(OFFSET));
+      increaseScore();
+
+      const rowIndices = canCleanRowList(cellMap, currentFigure, DIMENSIONS);
+      if (rowIndices.length > 0) {
+        increaseScore(rowIndices.length * MULTIPLAYER);
+        increaseSpeed();
+        setCells(cells =>
+          [...cells, ...currentFigure.cells].filter(({ coordinate }) =>
+            rowIndices.includes(coordinate[1]),
+          ),
+        );
+      }
     }
-  }, [cellMap, currentFigure, makeGameOver, nextFigure]);
+
+    // TODO: move cells down if possible
+  }, [
+    cellMap,
+    currentFigure,
+    increaseScore,
+    increaseSpeed,
+    makeGameOver,
+    nextFigure,
+  ]);
 
   useEffect(() => {
     if (gameOver) return;

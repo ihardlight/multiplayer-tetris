@@ -1,5 +1,5 @@
 export * from './affine';
-export * from './canMoveDown';
+export * from './canDoAction';
 export * from './matrix';
 export * from './initFigure';
 export * from './mapCellArrayToRecord';
